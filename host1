@@ -3,18 +3,7 @@ server {
 	modsecurity_rules_file /usr/local/openresty/nginx/modsec/waf1;	
         listen 8082;
         server_name waf1.quanlm1999-testzz.tk;
-	location / {
-        	content_by_lua_block {
-        		ngx.say("waf-1")
-			ngx.say(ngx.var.host)
-        	}
-	}
-	location /abc {
-                content_by_lua_block {
-			ngx.say("waf-1")
-                        ngx.say("abc")
-                }
-
+	include site.conf;
 	}
 }
 
