@@ -1,0 +1,11 @@
+server {
+        modsecurity on;
+        modsecurity_rules_file {{rule_path}};
+        listen 8082;
+        server_name {{domain}};
+        {% if lb_ip %}
+        proxy_pass http://{{lb_ip}}$uri;
+        {% else %}
+        include site.conf;
+        {% endif %}
+}
